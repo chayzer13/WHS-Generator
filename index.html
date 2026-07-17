@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>White Horse Stone — Генератор договора</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="page">
+    <header class="hero">
+      <div>
+        <p class="eyebrow">Автозаполнение договора</p>
+        <h1>White Horse Stone — договор и спецификация за минуту</h1>
+        <p class="subtitle">
+          Заполните данные заказчика, суммы и позиции спецификации.
+          Программа заменит их во всём документе: в тексте договора, реквизитах и приложении № 1.
+        </p>
+      </div>
+      <div class="hero-card">
+        <div class="summary-row">
+          <span>Итого</span>
+          <strong id="totalPreview">0,00 ₽</strong>
+        </div>
+        <div class="summary-row">
+          <span>Аванс</span>
+          <strong id="advancePreview">0 руб. 00 коп.</strong>
+        </div>
+        <div class="summary-row">
+          <span>Остаток</span>
+          <strong id="remainderPreview">0 руб. 00 коп.</strong>
+        </div>
+      </div>
+    </header>
+
+    <section class="panel">
+      <label class="file-picker">
+        <span>Файл шаблона Word</span>
+        <input type="file" id="templateFile" accept=".docx">
+        <small>Если сайт открыт через локальный сервер, шаблон подгрузится автоматически.</small>
+      </label>
+      <p id="status" class="status" data-type="info"></p>
+    </section>
+
+    <form id="contractForm" class="grid" onsubmit="return false;">
+      <section class="card">
+        <h2>Основные данные</h2>
+        <div class="fields">
+          <label>
+            Номер договора
+            <input type="text" id="contractNumber" placeholder="797/07-ТП/2026">
+          </label>
+          <label>
+            Регион в шапке
+            <input type="text" id="region" placeholder="Московская область">
+          </label>
+          <label>
+            Дата договора — число
+            <input type="text" id="contractDay" placeholder="13">
+          </label>
+          <label>
+            Месяц
+            <select id="contractMonth">
+              <option value="0">января</option>
+              <option value="1">февраля</option>
+              <option value="2">марта</option>
+              <option value="3">апреля</option>
+              <option value="4">мая</option>
+              <option value="5">июня</option>
+              <option value="6">июля</option>
+              <option value="7">августа</option>
+              <option value="8">сентября</option>
+              <option value="9">октября</option>
+              <option value="10">ноября</option>
+              <option value="11">декабря</option>
+            </select>
+          </label>
+          <label>
+            Год
+            <input type="text" id="contractYear" placeholder="2026">
+          </label>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Заказчик</h2>
+        <div class="fields">
+          <label class="wide">
+            ФИО полностью
+            <input type="text" id="customerFullName" placeholder="Голдин Сергей Александрович">
+          </label>
+          <label class="checkbox">
+            <input type="checkbox" id="autoShortName" checked>
+            Формировать подпись автоматически (Голдин С.А.)
+          </label>
+          <label class="wide">
+            Подпись (кратко)
+            <input type="text" id="customerShortName" placeholder="Голдин С.А.">
+          </label>
+          <label class="wide">
+            Адрес поставки / заказчика
+            <textarea id="deliveryAddress" rows="2" placeholder="Московская область, г. Балашиха..."></textarea>
+          </label>
+          <label>
+            Телефон
+            <input type="text" id="phone" placeholder="+ 7 (925) 805-21-07">
+          </label>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Оплата и поставка</h2>
+        <div class="fields">
+          <label>
+            Аванс, %
+            <input type="text" id="advancePercent" placeholder="10 или 10%">
+          </label>
+          <label>
+            Аванс, руб.
+            <input type="text" id="advanceAmount" placeholder="например 100000">
+          </label>
+          <label>
+            Срок поставки — с
+            <input type="text" id="deliveryFrom" placeholder="19.07.2026">
+          </label>
+          <label>
+            Срок поставки — по
+            <input type="text" id="deliveryTo" placeholder="22.07.2026">
+          </label>
+        </div>
+      </section>
+
+      <section class="card wide">
+        <div class="card-head">
+          <h2>Спецификация (Приложение № 1)</h2>
+          <button type="button" id="addRowBtn" class="btn-secondary">+ Добавить строку</button>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Наименование</th>
+                <th>Ед.</th>
+                <th>Кол-во</th>
+                <th>Цена</th>
+                <th>Сумма</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody id="specBody"></tbody>
+          </table>
+        </div>
+      </section>
+    </form>
+
+    <footer class="actions">
+      <button type="button" id="clearBtn" class="btn-secondary">Очистить поля</button>
+      <button type="button" id="resetBtn" class="btn-secondary">Сбросить к примеру</button>
+      <button type="button" id="generateBtn" class="btn-primary">Скачать договор (.docx)</button>
+    </footer>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/pizzip@3.1.7/dist/pizzip.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/file-saver@2.0.5/dist/FileSaver.min.js"></script>
+  <script src="docx-replacer.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
