@@ -107,8 +107,14 @@ h1 {
 }
 
 .card h2 {
-  margin: 0 0 16px;
+  margin: 0 0 8px;
   font-size: 20px;
+}
+
+.card-tip {
+  margin: 0 0 14px;
+  color: var(--muted);
+  font-size: 13px;
 }
 
 .card-head {
@@ -278,10 +284,30 @@ button:hover {
 }
 
 @media (max-width: 860px) {
+  .page {
+    padding: 16px 12px 28px;
+  }
+
   .hero,
   .grid,
   .fields {
     grid-template-columns: 1fr;
+  }
+
+  .hero {
+    gap: 16px;
+  }
+
+  .panel,
+  .card,
+  .hero-card {
+    padding: 16px;
+    border-radius: 18px;
+  }
+
+  .card-head {
+    flex-direction: column;
+    align-items: flex-start;
   }
 
   .actions {
@@ -290,5 +316,112 @@ button:hover {
 
   button {
     width: 100%;
+  }
+}
+
+@media (max-width: 560px) {
+  body {
+    font-size: 15px;
+  }
+
+  .page {
+    padding: 10px 8px 20px;
+  }
+
+  .hero {
+    margin-bottom: 12px;
+  }
+
+  h1 {
+    font-size: 22px;
+    margin-bottom: 8px;
+  }
+
+  .eyebrow {
+    font-size: 10px;
+    margin-bottom: 6px;
+  }
+
+  .subtitle {
+    font-size: 13px;
+    line-height: 1.45;
+  }
+
+  .panel,
+  .card,
+  .hero-card {
+    padding: 12px;
+    border-radius: 14px;
+  }
+
+  .card-tip {
+    font-size: 12px;
+    margin-bottom: 10px;
+  }
+
+  label {
+    font-size: 13px;
+    gap: 4px;
+  }
+
+  input,
+  select,
+  textarea {
+    padding: 12px 11px;
+    font-size: 16px;
+    min-height: 46px;
+    border-radius: 12px;
+  }
+
+  label.checkbox {
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .summary-row {
+    flex-direction: column;
+    gap: 2px;
+    padding: 8px 0;
+  }
+
+  .summary-row strong {
+    font-size: 15px;
+  }
+
+  .card h2 {
+    font-size: 18px;
+    margin-bottom: 6px;
+  }
+
+  .fields {
+    gap: 10px;
+  }
+
+  .actions {
+    gap: 10px;
+    margin-top: 16px;
+    flex-direction: column;
+  }
+
+  button {
+    padding: 13px 16px;
+    min-height: 46px;
+    font-size: 15px;
+    width: 100%;
+  }
+
+  .btn-icon {
+    width: 36px;
+    height: 36px;
+    font-size: 20px;
+  }
+
+  table {
+    min-width: 600px;
+  }
+
+  th,
+  td {
+    padding: 8px;
   }
 }
