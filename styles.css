@@ -19,22 +19,21 @@ body {
   margin: 0;
   font-family: "Segoe UI", Tahoma, sans-serif;
   color: var(--ink);
-  background:
-    radial-gradient(circle at top left, rgba(122, 90, 43, 0.12), transparent 28%),
-    linear-gradient(180deg, #efe4cf 0%, var(--bg) 100%);
+  background: linear-gradient(180deg, #f3e8d3 0%, var(--bg) 100%);
 }
 
 .page {
-  max-width: 1100px;
+  max-width: 1120px;
   margin: 0 auto;
-  padding: 32px 20px 48px;
+  padding: 24px 18px 36px;
 }
 
 .hero {
   display: grid;
-  grid-template-columns: 1.4fr 0.8fr;
-  gap: 24px;
-  margin-bottom: 24px;
+  grid-template-columns: 1.35fr 0.85fr;
+  gap: 22px;
+  margin-bottom: 20px;
+  align-items: stretch;
 }
 
 .eyebrow {
@@ -60,19 +59,24 @@ h1 {
 }
 
 .hero-card {
-  background: linear-gradient(135deg, #fffdf8 0%, #f6ebdc 100%);
+  background: linear-gradient(135deg, #fffdf8 0%, #f7e9cf 100%);
   border: 1px solid var(--line);
-  border-radius: 22px;
-  padding: 20px;
+  border-radius: 20px;
+  padding: 18px 20px;
   box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .summary-row {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   gap: 16px;
   padding: 10px 0;
   border-bottom: 1px solid var(--line);
+  min-height: 44px;
 }
 
 .summary-row:last-child {
@@ -87,8 +91,8 @@ h1 {
 .card {
   background: var(--paper);
   border: 1px solid var(--line);
-  border-radius: 22px;
-  padding: 22px;
+  border-radius: 20px;
+  padding: 18px 20px;
   box-shadow: var(--shadow);
 }
 
@@ -99,7 +103,7 @@ h1 {
 .grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 20px;
+  gap: 16px;
 }
 
 .card.wide {
@@ -132,7 +136,7 @@ h1 {
 .fields {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 14px;
+  gap: 12px;
 }
 
 label {
@@ -152,6 +156,16 @@ label.checkbox {
   flex-direction: row;
   align-items: center;
   font-weight: 500;
+  gap: 8px;
+}
+
+label.checkbox input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  min-height: 16px;
+  margin: 0;
+  flex-shrink: 0;
+  accent-color: var(--accent);
 }
 
 input,
@@ -164,6 +178,15 @@ textarea {
   font: inherit;
   background: #fff;
   color: var(--ink);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(122, 90, 43, 0.12);
 }
 
 textarea {
@@ -233,8 +256,9 @@ td input {
 .actions {
   display: flex;
   justify-content: flex-end;
+  align-items: center;
   gap: 12px;
-  margin-top: 24px;
+  margin-top: 22px;
 }
 
 button {
@@ -283,26 +307,30 @@ button:hover {
   line-height: 1;
 }
 
-@media (max-width: 860px) {
-  .page {
-    padding: 16px 12px 28px;
-  }
+/* ==========================
+   Tablet
+========================== */
 
-  .hero,
-  .grid,
-  .fields {
-    grid-template-columns: 1fr;
+@media (max-width: 768px) {
+  .page {
+    padding: 16px;
   }
 
   .hero {
+    grid-template-columns: 1fr;
     gap: 16px;
+  }
+
+  .grid,
+  .fields {
+    grid-template-columns: 1fr;
   }
 
   .panel,
   .card,
   .hero-card {
     padding: 16px;
-    border-radius: 18px;
+    border-radius: 16px;
   }
 
   .card-head {
@@ -312,39 +340,35 @@ button:hover {
 
   .actions {
     flex-direction: column;
+    gap: 12px;
   }
 
-  button {
+  .actions button {
     width: 100%;
   }
 }
 
-@media (max-width: 560px) {
+/* ==========================
+   Mobile
+========================== */
+
+@media (max-width: 480px) {
   body {
-    font-size: 15px;
+    font-size: 14px;
   }
 
   .page {
-    padding: 10px 8px 20px;
-  }
-
-  .hero {
-    margin-bottom: 12px;
+    padding: 10px;
   }
 
   h1 {
-    font-size: 22px;
-    margin-bottom: 8px;
-  }
-
-  .eyebrow {
-    font-size: 10px;
-    margin-bottom: 6px;
+    font-size: 24px;
+    line-height: 1.2;
   }
 
   .subtitle {
-    font-size: 13px;
-    line-height: 1.45;
+    font-size: 14px;
+    line-height: 1.5;
   }
 
   .panel,
@@ -352,76 +376,90 @@ button:hover {
   .hero-card {
     padding: 12px;
     border-radius: 14px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
   }
 
-  .card-tip {
-    font-size: 12px;
-    margin-bottom: 10px;
+  .summary-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+
+  .summary-row strong {
+    font-size: 16px;
+  }
+
+  .card-head {
+    gap: 10px;
+  }
+
+  .card h2 {
+    font-size: 18px;
   }
 
   label {
     font-size: 13px;
-    gap: 4px;
   }
 
   input,
   select,
   textarea {
-    padding: 12px 11px;
-    font-size: 16px;
-    min-height: 46px;
-    border-radius: 12px;
+    font-size: 16px; /* отключает zoom на iOS */
+    min-height: 48px;
+    padding: 12px;
   }
 
-  label.checkbox {
-    align-items: flex-start;
-    gap: 8px;
-  }
-
-  .summary-row {
-    flex-direction: column;
-    gap: 2px;
-    padding: 8px 0;
-  }
-
-  .summary-row strong {
-    font-size: 15px;
-  }
-
-  .card h2 {
-    font-size: 18px;
-    margin-bottom: 6px;
-  }
-
-  .fields {
-    gap: 10px;
-  }
-
-  .actions {
-    gap: 10px;
-    margin-top: 16px;
-    flex-direction: column;
+  textarea {
+    min-height: 90px;
   }
 
   button {
-    padding: 13px 16px;
-    min-height: 46px;
-    font-size: 15px;
     width: 100%;
+    min-height: 48px;
+    font-size: 15px;
   }
 
   .btn-icon {
-    width: 36px;
-    height: 36px;
-    font-size: 20px;
+    width: 40px;
+    height: 40px;
+  }
+
+  table,
+  thead,
+  tbody,
+  tr,
+  td {
+    display: block;
+    width: 100%;
+  }
+
+  thead {
+    display: none;
+  }
+
+  tr {
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 12px;
+    margin-bottom: 14px;
+    background: #fff;
+  }
+
+  td {
+    border: none;
+    padding: 8px 0;
+  }
+
+  td::before {
+    content: attr(data-label);
+    display: block;
+    font-size: 12px;
+    color: var(--muted);
+    margin-bottom: 4px;
+    font-weight: 600;
   }
 
   table {
-    min-width: 600px;
-  }
-
-  th,
-  td {
-    padding: 8px;
+    min-width: 0;
   }
 }
