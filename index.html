@@ -9,12 +9,12 @@
 <body>
   <div class="page">
     <header class="hero">
-      <div>
+      <div class="hero-copy">
         <p class="eyebrow">Автозаполнение договора</p>
-        <h1>White Horse Stone — договор и спецификация за минуту</h1>
+        <h1>White Horse Stone</h1>
         <p class="subtitle">
           Заполните данные заказчика, суммы и позиции спецификации.
-          Программа заменит их во всём документе: в тексте договора, реквизитах и приложении № 1.
+          Программа подставит всё автоматически в договоре и приложении № 1.
         </p>
       </div>
       <div class="hero-card">
@@ -45,6 +45,7 @@
     <form id="contractForm" class="grid" onsubmit="return false;">
       <section class="card">
         <h2>Основные данные</h2>
+        <div class="card-tip">Введите номер, дату и реквизиты</div>
         <div class="fields">
           <label>
             Номер договора
@@ -84,6 +85,7 @@
 
       <section class="card">
         <h2>Заказчик</h2>
+        <div class="card-tip">ФИО, адрес и телефон</div>
         <div class="fields">
           <label class="wide">
             ФИО полностью
@@ -110,6 +112,7 @@
 
       <section class="card">
         <h2>Оплата и поставка</h2>
+        <div class="card-tip">Аванс и сроки поставки</div>
         <div class="fields">
           <label>
             Аванс, %
@@ -132,9 +135,10 @@
 
       <section class="card wide">
         <div class="card-head">
-          <h2>Спецификация (Приложение № 1)</h2>
+          <h2>Спецификация</h2>
           <button type="button" id="addRowBtn" class="btn-secondary">+ Добавить строку</button>
         </div>
+        <div class="card-tip">Заполняйте позиции быстро и удобно</div>
         <div class="table-wrap">
           <table>
             <thead>
